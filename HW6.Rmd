@@ -26,5 +26,11 @@ head(polio.sumYear)
 
 ##視覺畫呈現
 ```{r results='hide',message=FALSE,cache=T}
-
+#安裝ggplot2 package
+install.packages("ggplot2")
+library(ggplot2)
+myData<-qplot(data=polio.m,x=YEAR,y=value,color=variable,facets = ~variable)
+#以年份作為X軸，發生率為Y軸，再利用不同的國家做分群
+myData<- myData + stat_smooth(method="lm")
+myData
 ```

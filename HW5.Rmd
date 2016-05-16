@@ -4,6 +4,7 @@ author: "B0244213"
 date: "2016¦~5¤ë16¤é—¥"
 output: ioslides_presentation
 ---
+#1928-1969¶¡¡A¤p¨à³Â·ô¦b¬ü°ê¦U¦{ªºµo¥Í²vÅÜ¤Æ
 
 ## ¸ê®Æ«e³B²z 
 ```{r results='hide',message=FALSE,cache=T}

@@ -1,13 +1,3 @@
----
-title: "1928-1969¶¡¡A¤p¨à³Â·ô¦b¬ü°ê¦U¦{ªºµo¥Í²vÅÜ¤Æ"
-author: "B0244213"
-date: "2016¦~5¤ë16¤é—¥"
-output: ioslides_presentation
----
-#1928-1969¶¡¡A¤p¨à³Â·ô¦b¬ü°ê¦U¦{ªºµo¥Í²vÅÜ¤Æ
-
-## ¸ê®Æ«e³B²z 
-```{r results='hide',message=FALSE,cache=T}
 #Åªcsv¸ê®Æ
 polio<-read.csv("POLIO_Incidence.csv",stringsAsFactors = F)
 head(polio)
@@ -22,4 +12,10 @@ polio.m$value<-as.numeric(polio.m$value) #±NvalueÄæ¦ìÂà¬°¼Æ¦r
 polio.sumYear<- #¦U¦{¦U¦~«×¥[Á`¡A­pºâ¸Ó¦~«×ªºÁ`µo¥Í²v
   aggregate(value~YEAR+variable,data=polio.m,FUN=sum,na.rm=F)
 head(polio.sumYear)
-```
+#µøÄ±µe§e²{
+install.packages("ggplot2")
+library(ggplot2)
+myData<-qplot(data=polio.m,x=YEAR,y=value,color=variable,facets = ~variable)
+#¥H¦~¥÷§@¬°X¶b¡Aµo¥Í²v¬°Y¶b¡A¦A§Q¥Î¤£¦Pªº°ê®a°µ¤À¸s
+myData<- myData + stat_smooth(method="lm")
+myData

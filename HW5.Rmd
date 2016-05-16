@@ -1,28 +1,24 @@
 ---
-title: "HW5"
-output: html_document
+title: "1928-1969¶¡¡A¤p¨à³Â·ô¦b¬ü°ê¦U¦{ªºµo¥Í²vÅÜ¤Æ"
+author: "B0244213"
+date: "2016¦~5¤ë16¤é—¥"
+output: ioslides_presentation
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+## ¸ê®Æ«e³B²z 
+```{r results='hide',message=FALSE,cache=T}
+#Åªcsv¸ê®Æ
+polio<-read.csv("POLIO_Incidence.csv",stringsAsFactors = F)
+head(polio)
+
+#±N¼eªí®æÂà¬°ªøªí®æ¡A¥H¦~(YEAR)/¶g(WEEK)¬°°ò·Ç¡A¦U¦{¦Wcolumn¥´´²ÅÜªø
+library(reshape2) #for melt()
+polio.m<-melt(polio,id.vars = c('YEAR','WEEK'))
+head(polio.m)
+
+polio.m[polio.m$value=="-",]$value<-NA #³B²z¯Ê­È,±N"-"Âà¬°NA
+polio.m$value<-as.numeric(polio.m$value) #±NvalueÄæ¦ìÂà¬°¼Æ¦r
+polio.sumYear<- #¦U¦{¦U¦~«×¥[Á`¡A­pºâ¸Ó¦~«×ªºÁ`µo¥Í²v
+  aggregate(value~YEAR+variable,data=polio.m,FUN=sum,na.rm=F)
+head(polio.sumYear)
 ```
-
-## R Markdown
-
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
-
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
-```{r cars}
-summary(cars)
-```
-
-## Including Plots
-
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
